@@ -61,14 +61,14 @@ import { Icon } from 'vant';
             add(){
                 this.$router.push({path:'/addAddress'});
             },
-			edit(item,index){
-				// console.log(item);
-				let arr = {
-					name:item.name,
-					tel:item.tel,
-					address:item.address
-				}
-				this.$store.commit('modifyModule/getAddress',arr);
+			edit(item){
+				// this.list[index].name = this.$store.state.modifyModule.address.name
+				// let arr = {
+				// 	name:item.name,
+				// 	tel:item.tel,
+				// 	address:item.address
+				// }
+				this.$store.commit('modifyModule/getAddress',item);
 				this.$router.push({path:'/modify'});
 			}
 		}
@@ -83,15 +83,7 @@ import { Icon } from 'vant';
 		box-shadow: 0px 1px 0px 0px rgba(0,0,0,0.1);
 		margin-bottom: .3rem;
 		display: flex;
-		display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flexbox;
 		align-items: center;
-		-webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        -moz-align-items: center;
 		position: relative;
 	}
 	.header .name{

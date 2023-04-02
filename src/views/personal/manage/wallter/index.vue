@@ -29,11 +29,11 @@
         </div>
 
         <div class="wallter-cont">
-            <div id="main" style="width: 7.2rem;height:4.3rem;"></div>
+            <div id="main" style="width: 7.2rem;height:4.6rem;"></div>
         </div>
 
         <div class="wallter-cont">
-            <div id="maychar" style="width: 7rem;height:3rem;"></div>
+            <div id="maychar" style="width: 7.2rem;height:4rem;"></div>
         </div>
     </div>
 </template>
@@ -49,10 +49,6 @@ export default {
         
         }
     },
-    mounted(){
-        this.line();
-        this.pie();
-    },
     methods:{
         back(){
             this.$router.go(-1);
@@ -67,7 +63,7 @@ export default {
             this.$router.push({path:'/withdrawal'});
         },
         line(){
-            var chartDom = this.$echarts.init(document.getElementById("main"));
+            var discount = this.$echarts.init(document.getElementById("main"));
             var option;
 
             option = {
@@ -90,8 +86,8 @@ export default {
                     }
                 ]
             };
-
-            chartDom.setOption(option);
+            window.addEventListener("resize", () => { discount.resize();});
+            discount.setOption(option);
         },  
         pie(){
             var chartDom = this.$echarts.init(document.getElementById("maychar"));
@@ -129,11 +125,14 @@ export default {
                 }
             ]
             };
-
             chartDom.setOption(option);
+            window.addEventListener("resize", () => { chartDom.resize();});
         }
     },
-    
+    mounted(){
+        this.line();
+        this.pie();
+    },
 }
 </script>
 

@@ -2,7 +2,7 @@
   <div>
     <div class="exploreChannels">
       <swiper :options="columnSwiperOptions">
-        <swiper-slide v-for="(item, index) in columns" :key="index">
+        <swiper-slide v-for="item in columns" :key="item.type">
           <a class="item" href="javascript:;">
             <div class="channelPic" v-lazy:background-image="item.picUrl"></div>
             <div class="channelCount">
@@ -193,7 +193,6 @@
   </div>
 </template>
 <script>
-  // import * as types from '../../vuex/mutation-types'
   import model from './TopicModel'
 
   export default {
@@ -214,7 +213,6 @@
           slidesPerView: 3.75,
           setWrapperSize: true,
           autoplay: 3000,
-          // loop:true,
           autoplayDisableOnInteraction: false
         }
       }
@@ -249,7 +247,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
   .exploreChannels {
     overflow: hidden;
     padding: .3rem .3rem .54rem;
@@ -274,13 +272,6 @@
     height: 1.5rem;
     margin-bottom: .2rem;
     border-radius: .1rem;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    -moz-background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
   }
   .exploreChannels .item .channelCount {
     position: absolute;
@@ -337,13 +328,6 @@
     height: 3rem;
     border-radius: .08rem .08rem 0 0;
     overflow: hidden;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    -moz-background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
   }
   .exploreRcmds .mainPosItem .imgContainer .topicTag {
     position: absolute;
@@ -370,24 +354,11 @@
     font-size: .28rem;
     margin-bottom: .19rem;
     display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    -webkit-justify-content: space-between;
-    -moz-justify-content: space-between;
     justify-content: space-between;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -moz-align-items: center;
     align-items: center;
     line-height: 1.2;
   }
   .exploreRcmds .mainPosItem .topicInfo .line1 .title{
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -moz-box-flex: 1;
-    -moz-flex: 1;
-    -ms-flex: 1;
     flex: 1;
     margin-right: .3rem;
     font-size: .36rem;
@@ -419,27 +390,9 @@
     margin-bottom: .3rem;
   }
   .exploreRcmds .minorPosItem .topicInfo {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -moz-box-flex: 1;
-    -moz-flex: 1;
-    -ms-flex: 1;
     flex: 1;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-direction: normal;
-    -webkit-box-orient: vertical;
-    -webkit-flex-direction: column;
-    -moz-flex-direction: column;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    -moz-justify-content: center;
     justify-content: center;
     overflow: hidden;
     position: relative;
@@ -450,15 +403,7 @@
     margin-bottom: .25rem;
   }
   .author {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -moz-align-items: center;
     align-items: center;
     margin-top: .14rem;
   }
@@ -510,14 +455,9 @@
   .exploreRcmds .minorPosItem .minorPic {
     position: relative;
     width: 3rem;
-    height: 2.72rem;
   }
   .exploreRcmds .minorPosItem .minorPic .imgContainer{
     background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    -moz-background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
@@ -531,7 +471,6 @@
     left: .1rem;
   }
   .exploreRcmds .minorPosItem .minorPic .imgContainer .topicTag .exploreTag {
-    /* display: inline-block; */
     font-size: .25rem;
     padding: 0 .16rem;
     height: .36rem;
@@ -571,13 +510,6 @@
     overflow: hidden;
   }
   .exploreGlobal .mainPosItem .imgContainer{
-    background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    -moz-background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     position: relative;
     height: 3rem;
     border-radius: .08rem .08rem 0 0;
@@ -595,25 +527,12 @@
   }
   .exploreGlobal .mainPosItem .topicInfo .line1{
     display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    -webkit-justify-content: space-between;
-    -moz-justify-content: space-between;
     justify-content: space-between;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -moz-align-items: center;
     align-items: center;
     line-height: 1.2;
     margin-bottom: .18rem;
   }
   .exploreGlobal .mainPosItem .topicInfo .line1 .title{
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -moz-box-flex: 1;
-    -moz-flex: 1;
-    -ms-flex: 1;
     flex: 1;
     margin-right: .3rem;
     font-size: .36rem;
@@ -623,7 +542,6 @@
   }
   .exploreGlobal .mainPosItem .topicInfo .line2 .subTitle{
     display: block;
-    display: -webkit-box;
     overflow: hidden;
     white-space: pre-wrap;
     position: relative;
@@ -635,9 +553,6 @@
     white-space: nowrap;
     overflow: hidden;
   }
-  .exploreMore {
-    margin: 0 .3rem .3rem;
-  }
   .exploreMore .line-title:before {
     content: '';
     display: block;
@@ -647,16 +562,9 @@
   }
   .exploreMore .line-title {
     height: 1rem;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -moz-align-items: center;
     align-items: center;
+    background-color: #fff;
   }
   .exploreMore .line-title .inner {
     width: 2rem;
@@ -689,52 +597,23 @@
   }
   .exploreMore .topicItem .pic1 {
     float: left;
-    width: 4.59rem;
+    width: 4.9rem;
     height: 3.5rem;
     margin-right: .04rem;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    -moz-background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
   }
   .exploreMore .topicItem .right {
     float: right;
-    width: 1.78rem;
+    width: 2rem;
   }
   .exploreMore .topicItem .right .pic2 {
     margin-bottom: .04rem;
     height: 1.7rem;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    -moz-background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
   }
   .exploreMore .topicItem .right .pic3 {
     height: 1.77rem;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    -moz-background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
   }
   .exploreMore .topicItem .onePic {
-    width: 6.42rem;
     height: 3.6rem;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    -moz-background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
   }
   .exploreMore .topicItem .desc {
     background-color: #fff;
@@ -745,5 +624,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+  }
+  .onePic,.pic3,.pic2,.pic1,.imgContainer,.channelPic{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 </style>

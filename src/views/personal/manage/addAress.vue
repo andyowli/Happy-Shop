@@ -39,8 +39,6 @@ export default {
             this.$router.go(-1);
         },
         onSave(content){
-            this.address.push(content);
-            console.log( this.address);
         }
     }
 }
@@ -54,15 +52,7 @@ export default {
 		box-shadow: 0px 1px 0px 0px rgba(0,0,0,0.1);
 		margin-bottom: .3rem;
 		display: flex;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flexbox;
 		align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        -moz-align-items: center;
 		position: relative;
 	}
 	.header .name{

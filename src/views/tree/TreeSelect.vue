@@ -5,7 +5,7 @@
         :main-active-index.sync="active">
             <template #content>
                <ul class="list" v-if="active === 0">
-                    <li class="cateItem" v-for="(item, index) in arr[0].subCateList" :key="index">
+                    <li class="cateItem" v-for="item in arr[0].subCateList" :key="item.id">
                         <a href="javascript:;">
                             <div class="cateImgWrapper">
                                 <img :src="item.wapBannerUrl" alt="" class="cateImg">
@@ -16,7 +16,7 @@
                </ul>
 
                 <ul class="list" v-if="active === 1">
-                        <li class="cateItem" v-for="(item, index) in arr[1].subCateList" :key="index">
+                        <li class="cateItem" v-for="item in arr[1].subCateList" :key="item.id">
                             <a href="javascript:;">
                                 <div class="cateImgWrapper">
                                     <img :src="item.wapBannerUrl" alt="" class="cateImg">
@@ -27,7 +27,7 @@
                 </ul>
 
                 <ul class="list" v-if="active === 2">
-                    <li class="cateItem" v-for="(item, index) in arr[2].subCateList" :key="index">
+                    <li class="cateItem" v-for="item in arr[2].subCateList" :key="item.id">
                         <a href="javascript:;">
                             <div class="cateImgWrapper">
                                 <img :src="item.wapBannerUrl" alt="" class="cateImg">
@@ -58,7 +58,6 @@ export default {
     },
     async created (){
         this.arr = model.categoryList;
-        console.log(this.arr)
     }
 }
 </script>
@@ -73,11 +72,6 @@ export default {
     }
     .cateItem {
         padding: .18rem;
-        display: flex;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flexbox;
         float: left;
     }
     .cateItem .cateImg{

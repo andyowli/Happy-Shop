@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <Tabbar v-model="active" active-color="#ee0a24" inactive-color="#000" route>
+    <Tabbar v-model="active" active-color="#f6521b" inactive-color="#000" route>
       <TabbarItem icon="wap-home-o" to="/home" style="background: #fafafa;">首页</TabbarItem>
       <TabbarItem icon="newspaper-o" to="/topic" style="background: #fafafa;">专题</TabbarItem>
       <TabbarItem icon="apps-o" to="/tree" style="background: #fafafa;">分类</TabbarItem>

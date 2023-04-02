@@ -47,8 +47,7 @@ export default {
             this.$router.go(-1);
         },
         onSave(content){
-            this.address.push(content);
-            console.log( this.address);
+            this.$router.go(-1);
         }
     }
 }

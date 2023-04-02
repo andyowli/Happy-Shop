@@ -8,7 +8,12 @@
         <div class="title">
             <span>请描述你遇到的问题类型</span>
             <div class="type">
-                <div class="type-title"  :class="{active: currentIndex === index}" v-for="(item,index) in type" :key="index" @click="liClick(index)">
+                <div 
+                class="type-title"  
+                :class="{active: currentIndex === index}" 
+                v-for="(item,index) in type" 
+                :key="item.title" 
+                @click="liClick(index)">
                     {{item.title}}
                 </div>
             </div>
@@ -88,10 +93,6 @@ export default {
 		box-shadow: 0px 1px 0px 0px rgba(0,0,0,0.1);
 		margin-bottom: .3rem;
 		align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        -moz-align-items: center;
 		position: relative;
 	}
 	.header button{
@@ -108,10 +109,6 @@ export default {
 	}
     .header,.type{
         display: flex;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flexbox;
     }
     .title{
         font-size: .3rem;
@@ -122,9 +119,6 @@ export default {
     }
     .type{
         justify-content: space-between;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-        -webkit-justify-content: space-between;
     }
     .type-title{
         width: 1.2rem;

@@ -13,10 +13,6 @@ VueRouter.prototype.push = function push(location) {
 
 const routes = [
   {
-    path: '/',
-    redirect: '/home'
-  },
-  {
     path: '/login',
     name: 'login',
     component: () => import('../views/login/Login.vue'),
@@ -31,9 +27,10 @@ const routes = [
     component: () => import('../views/forget/Forget.vue')
   },
   {
-    path: '',
-    name: '',
+    path: '/',
+    name: 'default',
     component: () => import('../views/layout/Default.vue'),
+    redirect: '/home',
     children: [
       {
         path: '/home',
@@ -150,8 +147,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+  mode: 'hash',
   routes
 })
 

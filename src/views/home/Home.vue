@@ -16,7 +16,7 @@
           </div>
           <div class="brand-container">
               <ul class="brand-list">
-                  <li class="brand-item" v-for="(tag, index) in tagList" :key="index" @click="toDetails">
+                  <li class="brand-item" v-for="tag in tagList" :key="tag.id" @click="toDetails">
                       <div class="brand-cnt">
                           <h4 class="title">{{tag.name}}</h4>
                           <div class="brand-subTitle">
@@ -44,7 +44,7 @@
           <!-- 周四下的轮播 -->
           <div class="newGoods-item" v-if="newItemList.length>0">
               <swiper class="newGoods-swiper" :options="swiperOption" ref="mySwiper">
-                  <swiper-slide class="newGoods-slide" v-for="(item, index) in newItemList" :key="index">
+                  <swiper-slide class="newGoods-slide" v-for="item in newItemList" :key="item.id">
                       <a class="good" href="javascript:;">
                           <div class="good-img"><img v-lazy="item.listPicUrl"></div>
                           <div class="good-name">{{item.name}}</div>
@@ -69,11 +69,11 @@
 
           <div class="newGoods-item1" v-if="popularItemList.length>0">
               <swiper class="newGoods-swiper" :options="swiperOption">
-                  <swiper-slide class="newGoods-slide" v-for="(item, index) in popularItemList" :key="index">
+                  <swiper-slide class="newGoods-slide" v-for="popular in popularItemList" :key="popular.id">
                       <a class="good">
-                          <div class="good-img"><img v-lazy="item.listPicUrl"></div>
-                          <div class="good-name">{{item.name}}</div>
-                          <div class="good-price">¥{{item.retailPrice}}</div>
+                          <div class="good-img"><img v-lazy="popular.listPicUrl"></div>
+                          <div class="good-name">{{popular.name}}</div>
+                          <div class="good-price">¥{{popular.retailPrice}}</div>
                       </a>
                   </swiper-slide>
               </swiper>
@@ -93,8 +93,8 @@
           </div>
 
           <div class="topics" v-if="topicList.length>0">
-              <swiper class="topics-swiper" :options="topicsSwiperOption">
-                  <swiper-slide class="topics-slide" v-for="(topic, index) in topicList" :key="index">
+              <swiper :options="topicsSwiperOption">
+                  <swiper-slide class="topics-slide" v-for="topic in topicList" :key="topic.id">
                       <a class="topics-slide-item" href="javascript:;">
                           <div class="topics-slide-img">
                               <img v-lazy="topic.itemPicUrl">
@@ -117,7 +117,7 @@
 
 
       <!-- 好物 -->
-      <div class="cate" v-for="(cate, index) in cateList" :key="index">
+      <div class="cate" v-for="cate in cateList" :key="cate.id">
           <div class="cate-grid">
               <h3 class="title">{{cate.name}}好物</h3>
               <div class="cate-goods">
@@ -126,7 +126,7 @@
                           <a class="good" href="javascript:;">
                               <div class="hd">
                                   <div class="wraper">
-                                      <img v-lazy="item.listPicUrl">
+                                    <img v-lazy="item.listPicUrl">
                                   </div>
                                   <div class="desc">{{item.simpleDesc}}</div>
                               </div>
@@ -201,9 +201,7 @@
   ::v-deep .swiper-wrapper{
     height: 3.7rem;
   }
-  .banner{
-      margin-bottom: .2rem;
-  }
+
   .banner img {
       width: 100%;
       height: 3.8rem;
@@ -216,19 +214,7 @@
   .brand-title {
     font-size: .4rem;
     display: flex;
-    -webkit-flex-flow: row nowrap;
-    -moz-flex-flow: row nowrap;
-    -ms-flex-flow: row nowrap;
-    flex-flow: row nowrap;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -moz-align-items: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    -moz-justify-content: center;
     justify-content: center;
     height: 1rem;
   }
@@ -236,7 +222,7 @@
     padding-bottom: .1rem;
   }
   .brand-list {
-    margin: 0 .16rem;
+    margin: 0 .18rem;
     height: 4.4rem;
     overflow: hidden;
   }
@@ -293,19 +279,7 @@
     margin-bottom: .2rem;
     height: 2.8rem;
     display: flex;
-    -webkit-flex-flow: row nowrap;
-    -moz-flex-flow: row nowrap;
-    -ms-flex-flow: row nowrap;
-    flex-flow: row nowrap;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -moz-align-items: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    -moz-justify-content: center;
     justify-content: center;
     font-size: .3rem;
   }
@@ -403,22 +377,12 @@
     display: block;
     background-image: url(../../assets/images/yxfl.png);
     background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
   }
-
-
-
   .topics {
     padding: 0 .5rem .4rem;
     overflow: hidden;
-  }
-  .topics-swiper {
-
   }
   .topics-slide {
     float: left;
@@ -439,39 +403,30 @@
     width: auto;
     position: relative;
     left: 50%;
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
   }
   .topics-hd {
+    display: flex;
     height: .5rem;
-    margin-bottom: .1rem;
     zoom: 1;
-    text-decoration: none;
     outline: 0;
+    text-decoration: none;
   }
   .topics-title {
     white-space: nowrap;
     overflow: hidden;
-    -ms-text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     width: 4rem;
-    float: left;
     font-size: .3rem;
     color: #333;
   }
   .topics-price {
-    float: right;
     font-size: .3rem;
     color: #b4282d;
   }
   .topics-desc {
     white-space: nowrap;
     overflow: hidden;
-    -ms-text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     width: 3rem;
     font-size: .3rem;
@@ -516,13 +471,9 @@
   }
   .cate-goods .list .item .hd {
     border-radius: .2rem;
-    position: relative;
-    z-index: 0;
     background-color: #f4f4f4;
   }
-  .cate-goods .list .item .good .wraper {
-  }
-  .cate-goods .list .item .hd img{
+  .cate-goods .list .item .hd .wraper{
     display: block;
     width: 100%;
     height: 2.8rem;

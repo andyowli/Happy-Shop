@@ -6,7 +6,7 @@
 		</div>
 
         <div>
-            <Collapse v-model="activeName" accordion v-for="(item,index) in arr" :key="index">
+            <Collapse v-model="activeName" accordion v-for="item in arr" :key="item.name">
                 <CollapseItem :title="item.title" :name="item.name">{{item.cont}}</CollapseItem>
             </Collapse>
         </div>
@@ -75,15 +75,7 @@ export default {
         box-shadow: 0px 1px 0px 0px rgba(0,0,0,0.1);
         margin-bottom: .3rem;
         display: flex;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flexbox;
         align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        -moz-align-items: center;
         position: relative;
     }
     .header .name{

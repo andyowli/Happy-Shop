@@ -13,6 +13,7 @@
                     :desc="item.desc"
                     :title="item.title"
                     :thumb="item.thumb"
+                    class="goods-card"
                 />
                 <template #right>
                     <Button square text="删除" type="danger" class="delete-button"></Button>
@@ -72,6 +73,8 @@ export default {
                 }).then(() => {
                     this.cardList.splice(index,1);
                     instance.close();
+                }).catch(() => {
+                    instance.close();
                 });
                 break;
             }
@@ -88,15 +91,7 @@ export default {
         box-shadow: 0px 1px 0px 0px rgba(0,0,0,0.1);
         margin-bottom: .3rem;
         display: flex;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flexbox;
         align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        -moz-align-items: center;
         position: relative;
     }
     .header .name{
@@ -112,8 +107,11 @@ export default {
     .van-card{
         background-color: #fff;
     }
-    .van-button--default{
-        background-color: #efefef;
+    .van-button--danger{
+        border: none;
+    }
+    .goods-card {
+        margin-bottom: .2rem;
     }
     .delete-button {
         height: 100%;

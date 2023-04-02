@@ -49,7 +49,7 @@
         </div>
 
         <!-- 地址 -->
-        <transition name="slide-fade">
+        <!-- <transition name="slide-fade">
             <div class="address" v-show="showAddress">
                 <Area 
                     title="标题" 
@@ -59,7 +59,20 @@
                     @cancel="onCancel"
                 />
             </div>
-        </transition>
+        </transition> -->
+
+        <ActionSheet v-model="showAddress" >
+            <div>
+                <Area 
+                    title="地址"
+                    :area-list="areaList" 
+                    :columns-placeholder="['请选择', '请选择', '请选择']"
+                    @confirm="onConfirm"
+                    @cancel="onCancel"
+                />
+            </div>
+        </ActionSheet>
+
 
         <!-- 用户评价 -->
         <div class="comment">
@@ -100,14 +113,18 @@
 <script>
 import { Icon } from 'vant';
 import { Sku } from 'vant';
+import { Toast } from 'vant';
 import { Area } from 'vant';
 import { areaList } from '@vant/area-data'; //省市区
+import { ActionSheet } from 'vant';
 import { GoodsAction, GoodsActionIcon, GoodsActionButton } from 'vant';
 export default {
     components:{
         Icon,
         Sku,
+        Toast,
         Area,
+        ActionSheet,
         GoodsAction,
         GoodsActionIcon,
         GoodsActionButton
@@ -152,10 +169,10 @@ export default {
             ],
             showAddress:false,
             areaList,  //省市区数据列表
-            regiondata:'', //保存选择的省市区
             goodNum:1, //保存选择购买的商品数量
             show: false,
-            // goodsId:this.sku.list.id,
+            info:{},
+            commodity:[],
             sku: {
                 // 所有sku规格类目与其值的从属关系，比如商品有颜色和尺码两大类规格，颜色下面又有红色和蓝色两个规格值。
                 // 可以理解为一个商品可以有多个规格类目，一个规格类目下可以有多个规格值。
@@ -192,7 +209,7 @@ export default {
             },
             goods: {
                 // 默认商品 sku 缩略图
-                picture: 'http://yanxuan.nosdn.127.net/31686ece0fb7a957c2af0c05bd0644ca.jpg'
+                picture: 'http://yanxuan.nosdn.127.net/3369d833cf44798fef1d637c4d5f9c0f.jpg'
             },
             properties:[
                 // 商品属性
@@ -231,8 +248,8 @@ export default {
             this.showAddress = true;
         },
         onConfirm(e){
-            this.regiondata = e
-            this.goodsList[1].chooseEntry = `${this.regiondata[0].name + '\xa0' + this.regiondata[1].name + '\xa0' + this.regiondata[2].name}`
+            this.showAddress = false;
+            this.goodsList[1].chooseEntry = e[0].name + ' ' + e[1].name + ' ' + e[2].name;
         },
         onCancel(){
             this.showAddress = false;
@@ -241,24 +258,43 @@ export default {
         processName(){
             let newStr;
             for(let i = 0; i<this.comments.length; i++){
-                console.log(this.comments[i].name)
                 if (this.comments[i].name.length >= 2) {
                     newStr = this.comments[i].name.substring(0, 1) + '*';
                     this.comments[i].name = newStr;
                 }
             }
         },
+        //添加商品到购物车
         addCart(){
             let arr = {
+                id:2259,
                 num:this.goodNum,
                 price:this.sku.price,
                 desc:'描述信息',
                 title:this.title[0].text,
                 thumb:this.sku.tree[0].v[0].imgUrl
             }
-            this.$store.commit('addCartModule/getItem',arr);
-            localStorage.setItem('car',JSON.stringify(arr));
-            this.$router.push({path:'/car'});
+            // this.commodity.push(arr);
+            if(this.commodity.length == 0) {
+                this.commodity.push(arr);
+            } else {
+                // findIndex用于数组
+                let index = this.commodity.findIndex((item)=>{
+                    console.log(item)
+                    return item.id == this.sku.list[0].id
+                })
+                console.log(index);
+                // 如果index == -1，代表没有找到相同商品，则添加至购物车
+                if(index == -1){
+                    this.commodity.push(arr);
+                    console.log(this.commodity);
+                }else{
+                    this.commodity[index].num = ++this.goodNum;
+                }
+            }
+            localStorage.setItem('car',JSON.stringify(this.commodity));
+            this.$store.commit('addCartModule/getItem',this.commodity);
+            this.show = false;
         },
         change(number){
             console.log(number);
@@ -296,7 +332,6 @@ export default {
         height: .4rem;
         position: absolute;
         top: .1rem;
-        /* left: .3rem; */
     }
     .goodTitle,ul{
         margin-bottom: .2rem;
@@ -355,6 +390,9 @@ export default {
     .content {
         padding: 16px 16px 160px;
     }
+    .address{
+        transform: translateY(-294px);
+    }
     .slide-fade-enter-active {
         transition: all .3s ease;
     }
@@ -363,7 +401,7 @@ export default {
     }
     .slide-fade-enter, .slide-fade-leave-to
         /* .slide-fade-leave-active for below version 2.1.8 */ {
-        transform: translateY(60px);
+        transform: translateY(-60px);
         opacity: 0;
     }
     .comment-title{

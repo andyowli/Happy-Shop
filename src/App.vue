@@ -7,7 +7,8 @@
 <script>
 export default {
   beforeCreate() {
-    document.querySelector('body').setAttribute('style', 'height: 100%;')
+    document.querySelector('body').style.height = '100%'
+    document.querySelector('body').style.backgroundColor = '#e9ecf5'
   },
 }
 </script>
@@ -16,6 +17,5 @@ export default {
 *{margin: 0;padding: 0;}
 #app{
   height: 100%;
-  background-color: #e9ecf5;
 }
 </style>

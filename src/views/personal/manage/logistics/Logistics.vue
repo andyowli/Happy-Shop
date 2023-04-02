@@ -32,7 +32,6 @@
          <!-- 好物 -->
         <div class="cate">
             <div class="cate-grid" v-for="(cate, index) in banners" :key="index">
-                <!-- <h3 class="title">{{cate.name}}好物</h3> -->
                 <div class="cate-goods">
                     <ul class="list">
                         <li class="item" v-for="(item, idx) in cate.itemList" :key="idx">
@@ -94,7 +93,6 @@ export default {
         box-shadow: 0px 1px 0px 0px rgba(0,0,0,0.1);
         margin-bottom: .3rem;
         display: flex;
-        /* justify-content: space-between; */
         align-items: center;
         position: relative;
     }
@@ -135,14 +133,11 @@ export default {
     .cate-goods .list {
         position: relative;
         z-index: 0;
-        overflow: hidden;
     }
     .cate-goods .list .item {
         float: left;
         position: relative;
         width: 3.2rem;
-        /* padding: 0 .2rem .33rem; */
-        overflow: hidden;
         background-color: #fff;
         margin-top: .3rem;
     }
@@ -157,8 +152,6 @@ export default {
         position: relative;
         z-index: 0;
         background-color: #f4f4f4;
-    }
-    .cate-goods .list .item .good .wraper {
     }
     .cate-goods .list .item .hd img{
         display: block;
@@ -175,9 +168,6 @@ export default {
         letter-spacing: 0;
         line-height: .35rem;
         padding: .2rem .1rem;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
     }
     .cate-goods .list .item .name {
         margin: .3rem auto .1rem;
@@ -185,9 +175,6 @@ export default {
         line-height: 1;
         text-align: left;
         font-size: .28rem;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
         color: #333;
     }
     .cate-goods .list .item .price {
@@ -196,5 +183,12 @@ export default {
         text-align: left;
         color: #b4282d;
         padding: 0 .1rem;
+    }
+    .name,.desc{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .list,.item,.name,.desc{
+        overflow: hidden;
     }
 </style>

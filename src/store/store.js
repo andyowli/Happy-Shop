@@ -3,7 +3,7 @@ import Vuex from "vuex" //引入vuex
 
 Vue.use(Vuex) //使用vuex
 
-let car = JSON.parse(localStorage.getItem('car') || '[]');
+// let car = JSON.parse(localStorage.getItem('car') || '[]');
  
 export default new Vuex.Store({
     state:{
@@ -40,25 +40,22 @@ export default new Vuex.Store({
             namespaced: true,
             
             state:{
-                addCart:car
+                addCart:[]
             },
             mutations:{
                 getItem(state,n){
-                    state.addCart = n
+                    state.addCart = n;    
                 }
             }
         },
         modifyModule:{
             namespaced: true,
             state:{
-                address:{
-                    name:'',
-                    phone:'',
-                    address:''
-                }
+                address:[]
             },
             mutations:{
                 getAddress(state,n){
+                    console.log(n)
                     state.address = n;
                 }
             }

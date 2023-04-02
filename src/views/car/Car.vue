@@ -9,29 +9,29 @@
         </div>
         <div v-else>
             <Card
-                :num="this.$store.state.addCartModule.addCart.num"
-                :price="this.$store.state.addCartModule.addCart.price"
-                :desc="this.$store.state.addCartModule.addCart.desc"
-                :title="this.$store.state.addCartModule.addCart.title"
-                :thumb="this.$store.state.addCartModule.addCart.thumb"
+                v-for="(item,goodIndex) in card"
+                :key="item.id"
+                :num="item.num"
+                :price="item.price"
+                :desc="item.desc"
+                :title="item.title"
+                :thumb="item.thumb"
             >
                 <template #tags>
-                    <tag plain type="danger">标签</tag>
-                    <tag plain type="danger">标签</tag>
+                   
                     <div class="btn">
-                        <button @click="reduce">-</button>
-                        <input type="number" v-model="number">
-                        <button @click="add">+</button>
+                        <button @click="reduce(goodIndex)">-</button>
+                        <input type="number" :value="item.num">
+                        <button @click="add(goodIndex)">+</button>
                     </div>
                 </template>
                 <template #footer>
-                    <Button  size="mini">按钮</Button >
-                    <Button  size="mini">按钮</Button >
+                    <Button  size="mini" @click="del(goodIndex,item)">删除</Button >
                 </template>
             </Card>
 
             <div>
-                <SubmitBar :price="price*num*number" decimal-length="2" button-text="提交订单" />
+                <SubmitBar :price="price*num" decimal-length="2" button-text="提交订单" />
             </div>
         </div>
     </div>
@@ -49,42 +49,53 @@ export default {
         SubmitBar ,
         Empty
     },
-    mounted(){
-        let name = localStorage.getItem('name');
-        console.log(name);
-        if(name !==  null){
-            this.$router.push({path:'/car'});
-            this.kong = false;
-        }else {
-            setTimeout(() => {
-                this.$router.push({path:'/login'})
-            },1000)
-        }
-    },
     data () {
         return  {
-            number:1,
-            price:this.$store.state.addCartModule.addCart.price,
+            price:'',
             num:100,
-            kong:true,
+            kong:false,
+            card:[],
             img:require('../../assets/images/nullCart.png')
         }
     },
+    mounted(){
+        const car = JSON.parse(localStorage.getItem('car'));
+        this.card = car;
+        if(this.card.length<1) {
+            this.kong = true; 
+        } else {
+            this.total();
+        }
+    },
     methods:{
-        //公共方法
-        carNum(){
-            this.$store.state.addCartModule.addCart.num = this.number;
+        total(){
+            this.price = this.card.reduce((prev, next) => {
+                return Number(prev) + Number(next.price * next.num);
+            }, 0)
         },
-        reduce () {
-            if(this.number <= 1) {
-                return
+        reduce(index) {
+            if(this.card[index].num <= 1) {
+                return 1
             }
-            this.number--;
-            this.carNum();
+            this.card[index].num--;
+            this.total();
         },
-        add () {
-            this.number++;
-            this.carNum();
+        add(index) {
+            this.card[index].num++
+            this.total();
+        },
+        del(index,good){
+            this.price = this.price - good.price * good.num;
+            this.card.splice(index,1);
+            if(this.price < 0) {
+                this.price = 0;
+            }
+            if(this.card.length<1) {
+                this.kong = true; 
+            }
+            let car = JSON.parse(localStorage.getItem('car')); 
+            car.splice(index,1);  
+            localStorage.setItem('car', JSON.stringify(car));
         }
     }
 }

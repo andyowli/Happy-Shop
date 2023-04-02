@@ -5,7 +5,7 @@
 			<div class="name">优惠券</div>
 		</div>
         <div class="contaion">
-            <div class="card2" v-for="(item,index) in coupon" :key="index">
+            <div class="card2" v-for="item in coupon" :key="item.id">
                 <div class="price">
                     <span class="Symbol">{{item.symbol}}</span>
                     <span class="number">{{item.number}}</span>
@@ -37,6 +37,7 @@ export default {
         return {
             coupon:[
                 {
+                    id:1,
                     symbol:'￥',
                     number:20,
                     title:'通用券',
@@ -44,6 +45,7 @@ export default {
                     time:'使用时效：2022.8.14至2022.8.22'
                 },
                 {
+                    id:2,
                     symbol:'￥',
                     number:10,
                     title:'服饰券',
@@ -69,15 +71,7 @@ export default {
         box-shadow: 0px 1px 0px 0px rgba(0,0,0,0.1);
         margin-bottom: .3rem;
         display: flex;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flexbox;
         align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        -moz-align-items: center;
         position: relative;
     }
     .header .name{
