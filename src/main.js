@@ -4,8 +4,6 @@ import router from './router'
 import store from "./store/store"
 import './assets/js/rem'
 import 'vant/lib/index.css'
-// import echarts from "./assets/js/echarts"
-// import 'https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import '/node_modules/swiper/swiper-bundle.css'
 // vue-awesome-swiper版本在4以上,需要单独引入
