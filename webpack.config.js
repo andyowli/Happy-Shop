@@ -51,11 +51,6 @@ module.exports = {
         ]
     },
     plugins:[
-        // ["import", {
-        //     "libraryName": "vant",
-        //     "libraryDirectory": "es",
-        //     "style": true
-        // }],
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             title:'html-webpack',
