@@ -1,6 +1,7 @@
 # Happy shopping
-<img width="281" alt="74e02be00eba1fddd4b17bc835c4b46" src="https://user-images.githubusercontent.com/40413892/229848475-2b082466-78ca-4c42-afc4-816106e6329c.png">      
-<img width="284" alt="3acc597cd8233174414501cfb7c0e0a" src="https://user-images.githubusercontent.com/40413892/229848507-dfbb618d-22d8-4c8f-9a40-ab7dd17fe6f5.png">
+<img width="183" alt="未标题-1" src="https://user-images.githubusercontent.com/40413892/230127808-20a0c2ea-0763-41d3-afe9-8fa39e586084.png">       <img width="183" alt="未标题-1" src="https://user-images.githubusercontent.com/40413892/230128420-762401e3-6300-4dbc-ad91-9a42f1c676c3.png">       <img width="183" alt="未标题-1" src="https://user-images.githubusercontent.com/40413892/230129319-a072262a-afa0-4c33-a927-b5bd8f89a09e.png">
+
+
 
 
 ## Technology stack：
