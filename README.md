@@ -9,6 +9,7 @@
 + Vuex 3.6.2
 + Vant 2.12.48
 + Vue-awesome-swiper 4.1.1
++ Webpack 5.75
 ## Features
 + Login / Register
 + Obtain product list using local data
